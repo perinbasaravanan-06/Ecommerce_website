@@ -1,7 +1,12 @@
 package com.ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,4 +24,19 @@ public class Review {
 
     @Column(nullable = false)
     private double rating;
+
+    @ElementCollection
+    private List<String> images = new ArrayList<>();
+
+    @JsonIgnore
+    @ManyToOne
+    @Column( nullable = false)
+    private Product product;
+
+    @ManyToOne
+    @Column(nullable = false)
+    private User user;
+
+    @Column(nullable = false)
+    private LocalDateTime createdAt = LocalDateTime.now() ;
 }
