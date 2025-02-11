@@ -17,4 +17,6 @@ public class Review {
     @Column(nullable = false)
     private String reviewText;
 
+    @Column(nullable = false)
+    private double rating;
 }
